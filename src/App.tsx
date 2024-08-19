@@ -9,7 +9,9 @@ function App() {
 		<BrowserRouter>
 			<HeaderContainer />
 			<Routes>
-				<Route path='/' element={<HomeContainer />} />
+				<Route path="/" element={<HomeContainer />}>
+					<Route path="/movies/:id" />
+				</Route>
 				<Route path='/tv' element={<TvContainer />} />
 			</Routes>
 		</BrowserRouter>

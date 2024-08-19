@@ -1,34 +1,44 @@
 import React, { useEffect, useState } from 'react'
 import MovieSlider from '../MovieSlider'
 import { MoviesData } from 'movie'
+import { useLocation, useMatch, useNavigate } from 'react-router-dom';
 
 type Props = {
     movies?: MoviesData[];
 }
 
 const MovieSliderContainer = ({ movies }: Props) => {
-    const [index, setIndex] = useState(0);
-    const [sliderWidth, setSliderWidth] = useState(window.innerWidth);
+    const navigate = useNavigate();
+    const location = useLocation();
+    const match = useMatch(`/movies/:id`);
+    const [currentIdx, setIndex] = useState(0);
 
     const handleNextBtn = () => {
-        if (movies) {
-            setIndex((prevIdx) =>
-                prevIdx < movies.length - 1 ? prevIdx + 1 : prevIdx
-            );
+        const maxIndex = movies && movies.length - 0;
+        if (maxIndex && currentIdx < maxIndex) {
+            setIndex(prevIdx => prevIdx + 1);
         }
     };
+
     const handlePrevBtn = () => {
-        if (index > 0) {
-            setIndex((prevIndex) => prevIndex - 1);
+        if (currentIdx > 0) {
+            setIndex(prevIdx => prevIdx - 1);
         }
     };
+
+    const handleMovieClicked = (id: number) => {
+        navigate(`/movies/${id}`);
+    }
+
     return (
         <MovieSlider
             movies={movies}
-            index={index}
-            sliderWidth={sliderWidth}
+            currentIdx={currentIdx}
+            sliderWidth={window.innerWidth}
+            match={match}
             onNextBtn={handleNextBtn}
             onPrevBtn={handlePrevBtn}
+            onMovieClicked={handleMovieClicked}
         />
     )
 }
