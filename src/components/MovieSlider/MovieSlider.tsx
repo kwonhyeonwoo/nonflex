@@ -1,26 +1,25 @@
-import React from 'react'
-import { Button, ButtonWrapper, Movie, Slider, SliderWrapper, Title } from './css'
+import { Button, ButtonWrapper, Slider, SliderWrapper, Title } from './css'
 import { MoviesData } from 'movie'
 import { faChevronRight, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { makeImage } from '../../utils/utils';
-import { PathMatch } from 'react-router-dom';
+import { Movie } from '../../core/common';
 
 type Props = {
     movies?: MoviesData[];
     currentIdx: number;
+    title: string;
     sliderWidth: number;
-    match: PathMatch<"id"> | null;
     onNextBtn: () => void;
     onPrevBtn: () => void;
-    onMovieClicked: (id: number) => void;
+    onMovieClicked: (id: number, data: MoviesData) => void;
 }
 
 const MovieSlider = ({
     movies,
     currentIdx,
     sliderWidth,
-    match,
+    title,
     onNextBtn,
     onPrevBtn,
     onMovieClicked,
@@ -28,7 +27,7 @@ const MovieSlider = ({
     const maxIndex = movies ? Math.ceil(movies.length * 200 / sliderWidth) - 1 : 0;
     return (
         <Slider>
-            <Title>Movie Lists</Title>
+            <Title>{title}</Title>
             <SliderWrapper
                 style={{
                     transform: `translateX(-${currentIdx * sliderWidth}px)`,
@@ -38,7 +37,7 @@ const MovieSlider = ({
                 {movies?.map((item, idx) => {
                     return (
                         <Movie
-                            onClick={() => onMovieClicked(item.id)}
+                            onClick={() => onMovieClicked(item.id, item)}
                             url={
                                 makeImage(item.poster_path, "w200")
                             }

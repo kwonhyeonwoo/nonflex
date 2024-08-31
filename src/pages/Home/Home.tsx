@@ -2,12 +2,18 @@ import { Main, OverView, Title, Banner } from './css'
 import { MovieData } from 'movie'
 import { makeImage } from '../../utils/utils';
 import MovieSliderContainer from '../../components/MovieSlider/container/MovieSliderContainer';
+import { Outlet } from 'react-router-dom';
 
 type Props = {
     data?: MovieData;
+    popluar?: MovieData;
+    topMovie?: MovieData;
 }
 
-const Home = ({ data }: Props) => {
+const Home = ({ data, popluar, topMovie }: Props) => {
+    console.log('data', data)
+    console.log('data', popluar)
+    console.log('data', topMovie)
     return (
         <Main>
             <Banner url={makeImage(data?.results[0].backdrop_path || "")}>
@@ -16,7 +22,17 @@ const Home = ({ data }: Props) => {
             </Banner>
             <MovieSliderContainer
                 movies={data?.results}
+                title="Movie Lists"
             />
+            <MovieSliderContainer
+                movies={popluar?.results}
+                title="Popular Lists"
+            />
+            <MovieSliderContainer
+                movies={topMovie?.results}
+                title="Best Movie Lists"
+            />
+            <Outlet />
         </Main>
     )
 }

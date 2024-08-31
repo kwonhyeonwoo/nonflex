@@ -59,7 +59,9 @@ export const Search = styled.button`
     }
 `;
 
-export const SearchInput = styled.input<{ isSearch: boolean }>`
+export const SearchInput = styled.input.attrs(() => ({
+    type: "text"
+})) <{ isSearch: boolean }>`
     padding: 0px 8px;
     box-sizing: border-box;
     border: 1px solid white;

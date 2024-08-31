@@ -9,13 +9,15 @@ type Props = {
     isSearch: boolean;
     scroll: number;
     onSearchOpen: () => void;
+    onMovieSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Header = ({
     pathname,
     isSearch,
     scroll,
-    onSearchOpen
+    onSearchOpen,
+    onMovieSearch
 }: Props) => {
     return (
         <Wrapper scroll={scroll}>
@@ -41,6 +43,7 @@ const Header = ({
             <SearchWrapper>
                 <SearchInput
                     isSearch={isSearch}
+                    onChange={onMovieSearch}
                     placeholder="영화 검색"
                 />
                 <Search onClick={onSearchOpen}>

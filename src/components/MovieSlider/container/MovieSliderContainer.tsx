@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import { useState } from 'react'
 import MovieSlider from '../MovieSlider'
 import { MoviesData } from 'movie'
-import { useLocation, useMatch, useNavigate } from 'react-router-dom';
+import { useMatch, useNavigate } from 'react-router-dom';
 
 type Props = {
     movies?: MoviesData[];
+    title: string;
 }
 
-const MovieSliderContainer = ({ movies }: Props) => {
+const MovieSliderContainer = ({ movies, title }: Props) => {
     const navigate = useNavigate();
-    const location = useLocation();
-    const match = useMatch(`/movies/:id`);
     const [currentIdx, setIndex] = useState(0);
 
     const handleNextBtn = () => {
@@ -26,16 +25,16 @@ const MovieSliderContainer = ({ movies }: Props) => {
         }
     };
 
-    const handleMovieClicked = (id: number) => {
-        navigate(`/movies/${id}`);
+    const handleMovieClicked = (id: number, data: MoviesData) => {
+        navigate(`movies/${id}`, { state: data });
     }
 
     return (
         <MovieSlider
             movies={movies}
+            title={title}
             currentIdx={currentIdx}
             sliderWidth={window.innerWidth}
-            match={match}
             onNextBtn={handleNextBtn}
             onPrevBtn={handlePrevBtn}
             onMovieClicked={handleMovieClicked}

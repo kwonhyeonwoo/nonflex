@@ -29,4 +29,4 @@ export const OverView = styled.p`
     font-weight: 400;
     line-height: 28px;
     color:rgba(255,255,255,0.7);
-`   
+`
