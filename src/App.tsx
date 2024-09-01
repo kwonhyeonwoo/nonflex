@@ -14,7 +14,10 @@ function App() {
 				<Route path="/" element={<HomeContainer />} >
 					<Route path="movies/:id" element={<MovieModalContainer />} />
 				</Route>
-				<Route path='/tv' element={<TvContainer />} />
+				<Route path='/tv' element={<TvContainer />}>
+					<Route path="tv/:id" element={<MovieModalContainer />} />
+
+				</Route>
 				<Route path="/search/:keyword" element={<SearchContainer />} >
 					<Route path=":id" element={<MovieModalContainer />} />
 				</Route>

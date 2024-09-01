@@ -1,17 +1,17 @@
 import { useState } from 'react'
 import MovieSlider from '../MovieSlider'
 import { MoviesData } from 'movie'
-import { useMatch, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 type Props = {
     movies?: MoviesData[];
+    link: string;
     title: string;
 }
 
-const MovieSliderContainer = ({ movies, title }: Props) => {
+const MovieSliderContainer = ({ movies, title, link }: Props) => {
     const navigate = useNavigate();
     const [currentIdx, setIndex] = useState(0);
-
     const handleNextBtn = () => {
         const maxIndex = movies && movies.length - 0;
         if (maxIndex && currentIdx < maxIndex) {
@@ -26,7 +26,7 @@ const MovieSliderContainer = ({ movies, title }: Props) => {
     };
 
     const handleMovieClicked = (id: number, data: MoviesData) => {
-        navigate(`movies/${id}`, { state: data });
+        navigate(`${link}/${id}`, { state: data });
     }
 
     return (

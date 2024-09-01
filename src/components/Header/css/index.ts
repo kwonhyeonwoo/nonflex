@@ -11,6 +11,7 @@ export const Wrapper = styled.header<{ scroll: number }>`
     ) : (
         "all .5s ease-in-out"
     )};
+    z-index:999;
     padding:20px;
     box-sizing: border-box;
     display: flex;

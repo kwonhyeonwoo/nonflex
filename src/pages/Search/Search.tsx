@@ -43,11 +43,7 @@ export default Search
 // https://api.themoviedb.org/3/search/movie?api_key=ae98cf1e5568a662263e277b893ef127&query=On
 // https://api.themoviedb.org/3/movie/top_rated?api_key=ae98cf1e5568a662263e277b893ef127
 
-//인기있는 티비
-// https://api.themoviedb.org/3/tv/popular
 
-//평점 높은 티비 
-// https://api.themoviedb.org/3/tv/top_rated
 
 // 현재 방영중인 티비
 // https://api.themoviedb.org/3/tv/on_the_air

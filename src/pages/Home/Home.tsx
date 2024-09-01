@@ -18,9 +18,6 @@ const Home = ({
     topMovie,
     onMovieInfoOpen
 }: Props) => {
-    console.log('data', data)
-    console.log('data', popluar)
-    console.log('data', topMovie)
     return (
         <Main>
             <Banner url={makeImage(data?.results[0].backdrop_path || "")}>
@@ -34,14 +31,17 @@ const Home = ({
             <MovieSliderContainer
                 movies={data?.results}
                 title="Movie Lists"
+                link='movies'
             />
             <MovieSliderContainer
                 movies={popluar?.results}
                 title="Popular Lists"
+                link='movies'
             />
             <MovieSliderContainer
                 movies={topMovie?.results}
                 title="Best Movie Lists"
+                link='movies'
             />
             <Outlet />
         </Main>
