@@ -8,7 +8,7 @@ import FooterContainer from "./components/common/Footer/container/FooterContaine
 
 function App() {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename={process.env.REACT_APP_PUBLIC_URL}>
 			<HeaderContainer />
 			<Routes>
 				<Route path="/" element={<HomeContainer />} >
@@ -27,3 +27,4 @@ function App() {
 	)
 }
 export default App;
+
