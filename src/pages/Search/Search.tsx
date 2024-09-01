@@ -37,17 +37,3 @@ const Search = ({ data, isLoading, onMovieClicked }: Props) => {
 
 
 export default Search
-
-
-// 검색
-// https://api.themoviedb.org/3/search/movie?api_key=ae98cf1e5568a662263e277b893ef127&query=On
-// https://api.themoviedb.org/3/movie/top_rated?api_key=ae98cf1e5568a662263e277b893ef127
-
-
-
-// 현재 방영중인 티비
-// https://api.themoviedb.org/3/tv/on_the_air
-
-
-// 오늘 개봉하는 티비
-// https://api.themoviedb.org/3/tv/airing_today
