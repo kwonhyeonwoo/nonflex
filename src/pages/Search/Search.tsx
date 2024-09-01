@@ -26,13 +26,10 @@ const Search = ({ data, isLoading, onMovieClicked }: Props) => {
                             key={idx}
                         >
                         </Movie>
-
-
                     ))}
                 </Wrapper>
             </Section>
             <Outlet />
-
         </Main>
     )
 }

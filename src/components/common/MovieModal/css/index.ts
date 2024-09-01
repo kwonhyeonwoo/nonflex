@@ -59,30 +59,6 @@ export const BtnWrapper = styled.div`
     display: flex;
     column-gap: 22px;
 `
-export const PlayBtn = styled.button`
-    padding:14px;
-    background-color: white;
-    color:black;
-    font-size: 19px;
-    font-weight: 700;
-    border:none;
-    border-radius: 5px;
-    display: flex;
-    column-gap: 4px;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all .2s ease-in-out;;
-
-    svg{
-        font-size:19px;
-    }
-    &:hover{
-        transition: all .2s ease-in-out;;
-        background-color: rgba(255,255,255,0.8);
-        color:rgba(0,0,0,0.7)
-    }
-`;
 
 export const LikedBtn = styled.button`
         border:1px solid white;

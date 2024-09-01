@@ -1,8 +1,9 @@
 import { MoviesData } from "movie";
-import { BtnWrapper, CloseBtn, InfoWrapper, LikedBtn, Modal, MovieImg, MovieTitle, PlayBtn, TitleWrapper } from "./css";
+import { BtnWrapper, CloseBtn, InfoWrapper, LikedBtn, Modal, MovieImg, MovieTitle, TitleWrapper } from "./css";
 import { makeImage } from "../../../utils/utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark, faPlay, faHeart } from "@fortawesome/free-solid-svg-icons";
+import PlayBtn from "../PlayBtn/PlayBtn";
 
 type Props = {
     data: MoviesData;
@@ -10,18 +11,16 @@ type Props = {
 }
 
 const MovieModal = ({ data, onModalClose }: Props) => {
-    console.log('data', data.poster_path)
     return (
         <Modal>
             <CloseBtn onClick={onModalClose}>
                 <FontAwesomeIcon icon={faXmark} />
             </CloseBtn>
-            <MovieImg url={makeImage(data.poster_path)}>
+            <MovieImg url={makeImage(data?.poster_path)}>
                 <TitleWrapper>
-                    <MovieTitle>{data.original_title}</MovieTitle>
+                    <MovieTitle>{data?.original_title}</MovieTitle>
                     <BtnWrapper>
-                        <PlayBtn>
-                            <FontAwesomeIcon icon={faPlay} /> 재생</PlayBtn>
+                        <PlayBtn type="play" />
                         <LikedBtn>
                             <FontAwesomeIcon icon={faHeart} />
                         </LikedBtn>
@@ -29,8 +28,8 @@ const MovieModal = ({ data, onModalClose }: Props) => {
                 </TitleWrapper>
             </MovieImg>
             <InfoWrapper>
-                <p className="date">{data.release_date}</p>
-                <p className="overview">{data.overview}</p>
+                <p className="date">{data?.release_date}</p>
+                <p className="overview">{data?.overview}</p>
             </InfoWrapper>
         </Modal>
     )

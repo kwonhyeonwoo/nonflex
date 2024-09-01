@@ -5,7 +5,7 @@ const MovieModalContainer = () => {
     const { state } = useLocation();
     const nav = useNavigate();
     const handleModalClose = () => nav(-1)
-    console.log('dddd')
+    console.log(state)
     return (
         <MovieModal
             data={state}
