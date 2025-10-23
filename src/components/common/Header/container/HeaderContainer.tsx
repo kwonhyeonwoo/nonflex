@@ -19,9 +19,9 @@ const HeaderContainer = () => {
   
   useMotionValueEvent(scrollY,"change",(y)=>{
     if(y > 80){
-      headerAnimation.start({backgroundColor:"transparent"})
-    }else{
       headerAnimation.start({backgroundColor:"black"})
+    }else{
+      headerAnimation.start({ backgroundColor: "transparent" });
     }
   })
     return (

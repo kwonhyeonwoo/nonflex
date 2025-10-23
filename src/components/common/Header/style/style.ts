@@ -10,7 +10,8 @@ export const HeaderWrapper = styled(motion.header)`
     position:fixed;
     padding:8px 15px;
     box-sizing: border-box;
-    background-color: ${(props)=>props.theme.black.darker};
+    z-index: 9999;
+    background-color: transparent;
 `
 
 export const LeftBox = styled.div`

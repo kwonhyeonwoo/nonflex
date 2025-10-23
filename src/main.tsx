@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App.tsx'
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 import { theme } from './theme/theme.ts';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
 html, body, div, span, applet, object, iframe,
@@ -34,8 +35,9 @@ footer, header, hgroup, main, menu, nav, section {
 *[hidden] {
     display: none;
 }
-body {
-  line-height: 1;
+h1,h2,h3,h4{
+  padding:0;
+  margin:0;
 }
 menu, ol, ul {
   list-style: none;
@@ -56,9 +58,11 @@ table {
   box-sizing: border-box;
 }
 body {
+  line-height: 1;
+  background-color: ${(props) => props.theme.black.darker};
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:black;
+  color:${(props)=>props.theme.white.darker};
   line-height: 1.2;
   
 }
@@ -72,15 +76,16 @@ input{
 li{
   list-style: none;
 }
-
-main{
-}
 `;
+
+const client = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <App />
+      <QueryClientProvider client={client}>
+        <GlobalStyle />
+        <App />
+      </QueryClientProvider>
     </ThemeProvider>
   </StrictMode>
 );
