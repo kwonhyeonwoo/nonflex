@@ -1,11 +1,8 @@
-import { useState } from 'react'
 import { Page } from './style/style'
 
 const Home = () => {
-
-
   return (
-    <Page>
+    <Page style={{height:"2000px",background:"red"}}>
        a1111
     </Page>
   )

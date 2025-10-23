@@ -66,9 +66,13 @@ a {
   text-decoration:none;
   color:inherit;
 }
+input{
+  outline:none;
+}
 li{
   list-style: none;
 }
+
 main{
 }
 `;

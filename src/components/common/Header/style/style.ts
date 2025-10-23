@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 
-export const HeaderWrapper = styled.header`
+export const HeaderWrapper = styled(motion.header)`
     width: 100%;
     height:80px;
     display: flex;
@@ -22,7 +22,6 @@ export const RightBox = styled.div`
     display: flex;
     align-items: center;
     position:relative;
-    border:1px solid red;
     justify-content: flex-end;
 `
 export const Logo = styled.svg`
@@ -62,7 +61,14 @@ export const Circle = styled(motion.div)`
 
 export const Input = styled(motion.input)`
   transform-origin: right center;
+  border:1px solid white;
+  background-color:transparent;
+  padding:8px 0px;
+  padding-left:30px;
+  box-sizing: border-box;
+  color:white;
 `;
 export const SearchSvg = styled(motion.svg)`
     position:absolute;
+    right:-5px;
 `;

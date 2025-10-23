@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
-import {motion} from "framer-motion"
+import { motion, animationControls } from "framer-motion";
 import { Circle, HeaderWrapper, Input, LeftBox, List, Logo, Nav, RightBox, SearchSvg } from "./style/style"
-import { loadEnvFile } from "process";
 
 interface Props {
   pathName?: string;
-  isSearchOpen:boolean;
+  isSearchOpen: boolean;
+  headerAnimation: ReturnType<typeof animationControls>;
   onSearchOpen: () => void;
 }
 
@@ -20,10 +20,14 @@ const lists  = [
     }
 ]
 
-const Header = ({ pathName,isSearchOpen, onSearchOpen }: Props) => {
-    console.log(isSearchOpen)
+const Header = ({
+  pathName,
+  isSearchOpen,
+  headerAnimation,
+  onSearchOpen,
+}: Props) => {
   return (
-    <HeaderWrapper>
+    <HeaderWrapper animate={headerAnimation}>
       <LeftBox>
         <Logo
           xmlns="http://www.w3.org/2000/svg"
