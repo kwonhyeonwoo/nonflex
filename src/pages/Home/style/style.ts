@@ -2,15 +2,16 @@ import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Page = styled.main`
-  width: 100%;
+    width: 100%;
 `;
+
 
 export const Banner = styled.div<{ img: string }>`
   width: 100%;
   height: 100vh;
   display: flex;
   box-sizing: border-box;
-  padding:0px 20px;
+  padding: 0 20px;
   flex-direction: column;
   justify-content: center;
   background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 1)),
@@ -18,6 +19,7 @@ export const Banner = styled.div<{ img: string }>`
   background-size: cover;
   background-position: center;
 `;
+
 
 export const Title = styled.h2`
     font-size: 68px;
@@ -34,18 +36,21 @@ export const SliderWrapper = styled.div`
     position: relative;
     width: 100%;
     bottom:160px;
-    border:1px solid red;
+    bottom:100px;
 `;
 
 export const SliderBox = styled(motion.div)`
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(6, 1fr);
-    position: absolute;
     width: 100%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    position: absolute;
+    box-sizing: border-box;
+    padding:50px 0px;
+    overflow-x:hidden ;
 `;
 
-export const Box = styled(motion.div)`
+export const Box = styled(motion.div) < { bgImg: string }> `
     height:200px;
     background-color:white;
     color:black;
@@ -54,4 +59,6 @@ export const Box = styled(motion.div)`
     align-items: center;
     font-weight: 700;
     font-size: 40px;
+    background-image:url(${(props) => props.bgImg});
+    background: cover;
 `
