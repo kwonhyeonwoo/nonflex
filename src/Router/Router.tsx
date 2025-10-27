@@ -4,13 +4,15 @@ import HeaderContainer from "../components/common/Header/container/HeaderContain
 
 const Router = ()=>{
     return (
-        <BrowserRouter>
-            <HeaderContainer/>
-            <Routes>
-                <Route path="/" element={<HomeContainer/>}/>
-            </Routes>
-        </BrowserRouter>
-    )
+      <BrowserRouter>
+        <HeaderContainer />
+        <Routes>
+          <Route path="/" element={<HomeContainer />}>
+            <Route path="/movies/:id" element={<HomeContainer />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    );
 };
 
 export default Router;

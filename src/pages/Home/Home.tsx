@@ -1,55 +1,108 @@
-import type { IMovie } from 'movie'
-import { Banner, Box, OverView, Page, SliderBox, SliderWrapper, Title } from './style/style'
+import type { IMovie, IMovieResult } from 'movie'
+import {
+  Banner,
+  ModalCard,
+  ModalWrapper,
+  MovieCard,
+  MovieCardHover,
+  MovieImg,
+  MovieTitle,
+  OverView,
+  Page,
+  SliderBox,
+  SliderWrapper,
+  Title,
+  TitleBox,
+} from "./style/style";
 import { formatImgUrl } from '../../utils/utils';
 import { AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
 
-interface Props{
-  data:IMovie | undefined;
+
+const parentVariants = {
+  rest: { scale: 1, y: 0, zIndex: 1 },
+  hover: { scale: 1.3, y: -32, zIndex: 99, transition: { duration: 0.2 } },
+};
+
+const childVariants = {
+  hover: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+};
+
+interface Props {
+  data: IMovie | undefined;
+  movieMatch: string | undefined;
+  movieId: string | undefined;
+  index: number;
+  movieResult:IMovieResult;
+  onModalClose: () => void;
+  onSlider: () => void;
+  onMovieModalOpen: (id: string) => void;
 }
 
-const Home = ({data}:Props) => {
-  const [index, setIndex] = useState(0);
-
-  const increase = () => {
-    if (!data) return;
-    const maxIndex = Math.ceil((data.results.length - 1) / 6) - 1;
-    setIndex((prev) => prev === maxIndex ? 0 : prev + 1);
-  };
-
+const Home = ({ 
+    data,
+    movieMatch,
+    movieId,
+    index,
+    onSlider, 
+    movieResult,
+    onModalClose,
+    onMovieModalOpen 
+  }: Props) => {
   return (
-    <Page onClick={increase}>
+    <Page>
       <Banner img={formatImgUrl(data?.results?.[0]?.backdrop_path || "")}>
         <Title>{data?.results[0].title}</Title>
         <OverView>{data?.results[0].overview}</OverView>
       </Banner>
       <SliderWrapper>
-          <AnimatePresence initial={false}>
-            <SliderBox
-              transition={{ type: "tween" }}
-              initial={{ x: window.innerWidth  }}
-              animate={{ x: 0 }}
-              exit={{ x: -window.outerWidth  }}
-              key={index}
-            >
-              {data?.results.slice(1).slice(6 * index, 6 * index + 6).map((movie) => (
-                <Box 
-                  key={movie.id} 
-                  bgImg={formatImgUrl(movie.backdrop_path , "w500")}
-                  initial={{scale:1}}
-                  whileHover={{scale:1.3,y:-20,transition:{
-                    delay:1,
-                    duration:0.3
-                  }}}
+        <AnimatePresence initial={false}>
+          <SliderBox
+            transition={{ type: "tween" }}
+            initial={{ x: window.innerWidth }}
+            animate={{ x: 0 }}
+            exit={{ x: -window.outerWidth }}
+            key={index}
+          >
+            {data?.results
+              .slice(1)
+              .slice(6 * index, 6 * index + 6)
+              .map((movie) => (
+                <MovieCard
+                  onClick={() => onMovieModalOpen(String(movie.id))}
+                  key={movie.id}
+                  bgImg={formatImgUrl(movie?.backdrop_path, "w500")}
+                  layoutId={String(movie.id)}
+                  variants={parentVariants}
+                  initial="rest"
+                  animate="rest"
+                  whileHover="hover"
                 >
-                  1
-                  </Box>
+                  <MovieCardHover variants={childVariants}>
+                    {movie.title}
+                  </MovieCardHover>
+                </MovieCard>
               ))}
-            </SliderBox>
-          </AnimatePresence>
-        </SliderWrapper>
+          </SliderBox>
+        </AnimatePresence>
+      </SliderWrapper>
+      {movieMatch && (
+        <AnimatePresence>
+          <ModalWrapper
+            onClick={onModalClose}
+            layoutId={movieId}
+            animate={{ opacity: 1 }}
+          >
+            <ModalCard>
+              <MovieImg img={formatImgUrl(movieResult.backdrop_path, "w500")} />
+              <TitleBox>
+                <MovieTitle>{movieResult.title}</MovieTitle>
+              </TitleBox>
+            </ModalCard>
+          </ModalWrapper>
+        </AnimatePresence>
+      )}
     </Page>
   );
-}
+};
 
 export default Home;
