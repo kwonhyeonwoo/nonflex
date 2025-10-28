@@ -64,7 +64,7 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
   color:${(props)=>props.theme.white.darker};
   line-height: 1.2;
-  
+  overflow-x: hidden;
 }
 a {
   text-decoration:none;
@@ -75,6 +75,13 @@ input{
 }
 li{
   list-style: none;
+}
+button{
+  cursor: pointer;
+  &:hover{
+    opacity: 0.6;
+    transition: all .2s ease-in-out;
+  }
 }
 `;
 

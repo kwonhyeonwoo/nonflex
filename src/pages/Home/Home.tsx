@@ -1,90 +1,69 @@
 import type { IMovie, IMovieResult } from 'movie'
 import {
-  Banner,
   ModalCard,
   ModalWrapper,
-  MovieCard,
-  MovieCardHover,
   MovieImg,
   MovieTitle,
-  OverView,
   Page,
-  SliderBox,
   SliderWrapper,
-  Title,
   TitleBox,
 } from "./style/style";
 import { formatImgUrl } from '../../utils/utils';
 import { AnimatePresence } from 'framer-motion';
+import MovieSliderContainer from '../../components/MovieSlider/container/MovieSliderContainer';
+import Banner from '../../components/Banner/Banner';
+import BannerContainer from '../../components/Banner/container/BannerContainer';
 
 
-const parentVariants = {
-  rest: { scale: 1, y: 0, zIndex: 1 },
-  hover: { scale: 1.3, y: -32, zIndex: 99, transition: { duration: 0.2 } },
-};
-
-const childVariants = {
-  hover: { opacity: 1, y: 0, transition: { duration: 0.2 } },
-};
 
 interface Props {
-  data: IMovie | undefined;
+  data:IMovie | undefined;
   movieMatch: string | undefined;
   movieId: string | undefined;
-  index: number;
   movieResult:IMovieResult;
-  onModalClose: () => void;
-  onSlider: () => void;
-  onMovieModalOpen: (id: string) => void;
+  handleBannerModal:()=>void;
+  onModalClose:()=>void;
 }
 
-const Home = ({ 
-    data,
-    movieMatch,
-    movieId,
-    index,
-    onSlider, 
-    movieResult,
-    onModalClose,
-    onMovieModalOpen 
-  }: Props) => {
+const Home = ({
+  data,
+  movieMatch,
+  movieId,
+  movieResult,
+  handleBannerModal,
+  onModalClose,
+}: Props) => {
   return (
     <Page>
-      <Banner img={formatImgUrl(data?.results?.[0]?.backdrop_path || "")}>
-        <Title>{data?.results[0].title}</Title>
-        <OverView>{data?.results[0].overview}</OverView>
-      </Banner>
+      <BannerContainer
+        imgUrl={formatImgUrl(data?.results?.[0]?.backdrop_path || "")}
+        title={data?.results[0].title}
+        overView={data?.results[0].overview}
+        id={String(data?.results[0].id)}
+      />
       <SliderWrapper>
-        <AnimatePresence initial={false}>
-          <SliderBox
-            transition={{ type: "tween" }}
-            initial={{ x: window.innerWidth }}
-            animate={{ x: 0 }}
-            exit={{ x: -window.outerWidth }}
-            key={index}
-          >
-            {data?.results
-              .slice(1)
-              .slice(6 * index, 6 * index + 6)
-              .map((movie) => (
-                <MovieCard
-                  onClick={() => onMovieModalOpen(String(movie.id))}
-                  key={movie.id}
-                  bgImg={formatImgUrl(movie?.backdrop_path, "w500")}
-                  layoutId={String(movie.id)}
-                  variants={parentVariants}
-                  initial="rest"
-                  animate="rest"
-                  whileHover="hover"
-                >
-                  <MovieCardHover variants={childVariants}>
-                    {movie.title}
-                  </MovieCardHover>
-                </MovieCard>
-              ))}
-          </SliderBox>
-        </AnimatePresence>
+        <MovieSliderContainer
+          type="nowPlaying"
+          url="now_playing"
+          title="지금 상영중인 영화"
+        />
+        <MovieSliderContainer
+          type="popular"
+          url="popular"
+          title="가장 인기있는 영화"
+        />
+        <MovieSliderContainer
+          type="topRated"
+          url="top_rated"
+          title="최고 평점을 받은 영화"
+        />
+        <MovieSliderContainer
+          type="upcoming"
+          url="upcoming"
+          title="상영 예정인 영화"
+        />
       </SliderWrapper>
+
       {movieMatch && (
         <AnimatePresence>
           <ModalWrapper
