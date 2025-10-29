@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import Banner from '../Banner';
 import { useNavigate } from 'react-router-dom';
+import { useMovieStore } from '../../../store/useMovieStore';
 interface Props {
   imgUrl: string;
   title: string | undefined;
@@ -14,8 +15,10 @@ const BannerContainer = ({
     id,
 }:Props) => {
     const router = useNavigate();
+    const {setMovieKey} = useMovieStore();
     const handleBannerModal = useCallback(
       () => {
+        setMovieKey("nowPlaying")
         return router(`/movies/${id}`)
       },
       [id],
