@@ -61,7 +61,7 @@ export const InfoTitle = styled.div`
   flex-direction: column;
   row-gap: 3px;
   p {
-    color: grey; // 밝은 그레이 색상, 흰색에 가까운 세련된 서브톤
+    color: grey; 
   }
   .title {
     display: flex;

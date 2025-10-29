@@ -60,7 +60,7 @@ body {
   background-color: ${(props) => props.theme.black.darker};
   font-weight: 300;
   font-family: 'Source Sans Pro', sans-serif;
-  color:${(props)=>props.theme.white.darker};
+  color:${(props) => props.theme.white.darker};
   line-height: 1.2;
   overflow-x: hidden;
 }
@@ -76,6 +76,7 @@ li{
 }
 button{
   cursor: pointer;
+  border:none;
   &:hover{
     opacity: 0.6;
     transition: all .2s ease-in-out;

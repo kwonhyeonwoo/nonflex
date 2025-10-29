@@ -18,7 +18,6 @@ const StartRatingContainer = ({rating}:Props) => {
         stars.push(<FaRegStar key={i} color="#FFD700" />); // 빈 별
       }
     }
-    console.log(stars);
   return <StarRating stars={stars} />;
 }
 

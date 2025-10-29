@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useMovieQuery } from '../../../hooks/queries/useMovieQuery'
 import MovieSlider from '../MovieSlider'
 import { useCallback, useState } from 'react';
+import { useMovieStore } from '../../../store/useMovieStore';
 
 interface Props{
     title:string;
@@ -10,8 +11,9 @@ interface Props{
 }
 
 const MovieSliderContainer = ({title,type,url}:Props) => {
-    const { data } = useMovieQuery(type, url);
     const router = useNavigate();
+    const { data } = useMovieQuery(type, url);
+    const {setMovieKey} = useMovieStore();
     const [index, setIndex] = useState<number>(0)
     const [sliderType, setSliderType] = useState<string>("next");
     const handleSlider = useCallback(
@@ -33,9 +35,10 @@ const MovieSliderContainer = ({title,type,url}:Props) => {
     
     const handleMovieModalOpen = useCallback(
       (id: string) => {
+        setMovieKey(type)
         return router(`/movies/${id}`);
       },
-      [router]
+      [router,setMovieKey]
     );
   return (
     <MovieSlider

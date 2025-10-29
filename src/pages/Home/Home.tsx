@@ -1,17 +1,12 @@
-import type { IMovie, IMovieResult } from 'movie'
+import type { IMovie } from 'movie'
 import {
-  ModalCard,
-  ModalWrapper,
-  MovieImg,
-  MovieTitle,
   Page,
   SliderWrapper,
-  TitleBox,
 } from "./style/style";
 import { formatImgUrl } from '../../utils/utils';
-import { AnimatePresence } from 'framer-motion';
 import MovieSliderContainer from '../../components/MovieSlider/container/MovieSliderContainer';
 import BannerContainer from '../../components/Banner/container/BannerContainer';
+import ModalContainer from '../../components/Modal/container/ModalContainer';
 
 
 
@@ -19,7 +14,6 @@ interface Props {
   data:IMovie | undefined;
   movieMatch: string | undefined;
   movieId: string | undefined;
-  movieResult:IMovieResult;
   handleBannerModal:()=>void;
   onModalClose:()=>void;
 }
@@ -27,9 +21,6 @@ interface Props {
 const Home = ({
   data,
   movieMatch,
-  movieId,
-  movieResult,
-  onModalClose,
 }: Props) => {
   return (
     <Page>
@@ -63,20 +54,7 @@ const Home = ({
       </SliderWrapper>
 
       {movieMatch && (
-        <AnimatePresence>
-          <ModalWrapper
-            onClick={onModalClose}
-            layoutId={movieId}
-            animate={{ opacity: 1 }}
-          >
-            <ModalCard>
-              <MovieImg img={formatImgUrl(movieResult.backdrop_path, "w500")} />
-              <TitleBox>
-                <MovieTitle>{movieResult.title}</MovieTitle>
-              </TitleBox>
-            </ModalCard>
-          </ModalWrapper>
-        </AnimatePresence>
+        <ModalContainer/>
       )}
     </Page>
   );
