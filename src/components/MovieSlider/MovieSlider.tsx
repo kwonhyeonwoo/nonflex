@@ -1,8 +1,8 @@
 import { AnimatePresence } from 'framer-motion';
-import { HoverBtnWrapper, HoverInfoWrapper, HoverPlayerBtn, InfoTitle, MovieCard, MovieCardHover, MovieTitle, PaginationBtn, PaginationBtnWrapper, SliderBox, Wrapper } from './style/style';
+import {MovieCard,MovieTitle, PaginationBtn, PaginationBtnWrapper, SliderBox, Wrapper } from './style/style';
 import { formatImgUrl } from '../../utils/utils';
 import type { IMovie } from 'movie';
-import StartRatingContainer from '../StarRating/container/StartRatingContainer';
+import MovieHover from '../MovieHover/MovieHover';
 
 interface Props {
   data: IMovie | undefined;
@@ -19,9 +19,6 @@ const parentVariants = {
   hover: { scale: 1.5, y: -32, zIndex: 99, transition: { duration: 0.2 } },
 };
 
-const childVariants = {
-  hover: { opacity: 1, y: 0, transition: { duration: 0.2 } },
-};
 
 const MovieSlider = ({
   data,
@@ -60,46 +57,13 @@ const MovieSlider = ({
                 animate="rest"
                 whileHover="hover"
               >
-                <MovieCardHover variants={childVariants}>
-                  <HoverBtnWrapper>
-                    <HoverPlayerBtn>
-                      <svg
-                        viewBox="0 0 24 24"
-                        width="24"
-                        height="24"
-                        data-icon="PlayMedium"
-                        data-icon-id=":ro:"
-                        aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        role="img"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M5 2.7a1 1 0 0 1 1.48-.88l16.93 9.3a1 1 0 0 1 0 1.76l-16.93 9.3A1 1 0 0 1 5 21.31z"
-                        ></path>
-                      </svg>
-                    </HoverPlayerBtn>
-                    <HoverPlayerBtn>
-                      <span className="add">+</span>
-                    </HoverPlayerBtn>
-                    <HoverPlayerBtn
-                      onClick={() => onMovieModalOpen(String(movie.id))}
-                    >
-                      <img src="/assets/right-arrow.svg" alt="" />
-                    </HoverPlayerBtn>
-                  </HoverBtnWrapper>
-                  <HoverInfoWrapper>
-                    <InfoTitle>
-                      <p className='title'>
-                        {movie.release_date}
-                        <StartRatingContainer rating={movie.vote_average} />
-                      </p>
-
-                      <p className="title">{movie.original_title}</p>
-                    </InfoTitle>
-                  </HoverInfoWrapper>
-                </MovieCardHover>
+                  <MovieHover
+                    release_date={String(movie.release_date)}
+                    vote_average={movie.vote_average}
+                    original_title={movie.original_title}
+                    id={movie.id}
+                    onMovieModalOpen={onMovieModalOpen}
+                  />
               </MovieCard>
             ))}
         </SliderBox>

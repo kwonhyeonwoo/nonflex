@@ -11,7 +11,6 @@ import {
 import { formatImgUrl } from '../../utils/utils';
 import { AnimatePresence } from 'framer-motion';
 import MovieSliderContainer from '../../components/MovieSlider/container/MovieSliderContainer';
-import Banner from '../../components/Banner/Banner';
 import BannerContainer from '../../components/Banner/container/BannerContainer';
 
 
@@ -30,7 +29,6 @@ const Home = ({
   movieMatch,
   movieId,
   movieResult,
-  handleBannerModal,
   onModalClose,
 }: Props) => {
   return (
