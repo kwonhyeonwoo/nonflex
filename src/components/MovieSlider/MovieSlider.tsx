@@ -1,11 +1,11 @@
 import { AnimatePresence } from 'framer-motion';
 import {MovieCard,MovieTitle, PaginationBtn, PaginationBtnWrapper, SliderBox, Wrapper } from './style/style';
 import { formatImgUrl } from '../../utils/utils';
-import type { IMovie } from 'movie';
 import MovieHover from '../MovieHover/MovieHover';
+import type { IContentBase } from 'content';
 
 interface Props {
-  data: IMovie | undefined;
+  data: IContentBase |  undefined;
   index: number;
   title: string;
   sliderType:string;
@@ -57,13 +57,17 @@ const MovieSlider = ({
                 animate="rest"
                 whileHover="hover"
               >
-                  <MovieHover
-                    release_date={String(movie.release_date)}
-                    vote_average={movie.vote_average}
-                    original_title={movie.original_title}
-                    id={movie.id}
-                    onMovieModalOpen={onMovieModalOpen}
-                  />
+                <MovieHover
+                  release_date={
+                    movie.release_date ?? movie.first_air_date ?? ""
+                  }
+                  original_title={
+                    movie.original_title ?? movie.original_name ?? ""
+                  }
+                  vote_average={movie.vote_average}
+                  id={movie.id}
+                  onMovieModalOpen={onMovieModalOpen}
+                />
               </MovieCard>
             ))}
         </SliderBox>

@@ -11,12 +11,20 @@ interface Props {
 
 const lists  = [
     {
-        list:"Home",
+        list:"홈",
         link:'/'
     },
     {
-        list:"Tv Shows",
+        list:"시리즈",
         link:"/tv"
+    },
+    {
+      list:"영화",
+      link:"/movie"
+    },
+    {
+      list:"내가 찜한 리스트",
+      link:"/my-lists"
     }
 ]
 

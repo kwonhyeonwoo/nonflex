@@ -1,4 +1,5 @@
 export const movieKeys ={
-    movies:(id:string)=>["movies",id],
+    contents:(category:"movie"|"tv",type:string)=>[category,type],
     movieSearch:(id:string)=>['movieSearch',id],
+    tvs:(id:string)=>['tvs',id]
 }

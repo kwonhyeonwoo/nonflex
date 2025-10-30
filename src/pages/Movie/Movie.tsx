@@ -1,12 +1,9 @@
-import type { IContentBase } from 'content'
-import {
-  Page,
-  SliderWrapper,
-} from "./style/style";
-import { formatImgUrl } from '../../utils/utils';
-import MovieSliderContainer from '../../components/MovieSlider/container/MovieSliderContainer';
-import BannerContainer from '../../components/Banner/container/BannerContainer';
-import ModalContainer from '../../components/Modal/container/ModalContainer';
+import type { IContentBase } from "content";
+import { MoviePage, SliderWrapper } from "./style/style";
+import BannerContainer from "../../components/Banner/container/BannerContainer";
+import MovieSliderContainer from "../../components/MovieSlider/container/MovieSliderContainer";
+import { formatImgUrl } from "../../utils/utils";
+import ModalContainer from "../../components/Modal/container/ModalContainer";
 
 interface Props {
   data: IContentBase | undefined;
@@ -16,12 +13,9 @@ interface Props {
   onModalClose: () => void;
 }
 
-const Home = ({
-  data,
-  movieMatch,
-}: Props) => {
+const Movie = ({ data, movieMatch }: Props) => {
   return (
-    <Page>
+    <MoviePage>
       <BannerContainer
         category="movie"
         contentKey="now_playing"
@@ -52,10 +46,9 @@ const Home = ({
           title="상영 예정인 영화"
         />
       </SliderWrapper>
-
       {movieMatch && <ModalContainer />}
-    </Page>
+    </MoviePage>
   );
 };
 
-export default Home;
+export default Movie

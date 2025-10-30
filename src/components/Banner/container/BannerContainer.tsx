@@ -1,28 +1,31 @@
 import { useCallback } from 'react'
 import Banner from '../Banner';
 import { useNavigate } from 'react-router-dom';
-import { useMovieStore } from '../../../store/useMovieStore';
+import { useContentStore } from '../../../store/useContentStore';
 interface Props {
   imgUrl: string;
   title: string | undefined;
   overView: string | undefined;
-  id:string;
+  id: string;
+  category: "movie" | "tv";
+  contentKey:string;
 }
 const BannerContainer = ({
     imgUrl,
     title,
     overView,
     id,
+    category,
+    contentKey
 }:Props) => {
+    const { setContentKey,  } = useContentStore();
     const router = useNavigate();
-    const {setMovieKey} = useMovieStore();
-    const handleBannerModal = useCallback(
-      () => {
-        setMovieKey("nowPlaying")
-        return router(`/movies/${id}`)
-      },
-      [id],
-    )
+    const handleBannerModal = useCallback(() => {
+      setContentKey(category, contentKey);
+      console.log('category',category)
+      console.log('contentKey',contentKey)
+      return router(`/movies/${id}`);
+    }, [router,category, contentKey, id,setContentKey]);
     
   return (
     <Banner

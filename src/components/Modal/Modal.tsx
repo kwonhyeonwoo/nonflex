@@ -1,13 +1,13 @@
 import { AnimatePresence } from "framer-motion";
 import { AddBtn, BtnWrapper, CloseButton, ModalCard, ModalWrapper, MovieImg, MovieTitle, OpenDate, OverView, OverViewText, TitleBox } from "./style/style";
 import { formatImgUrl } from "../../utils/utils";
-import type {  IMovieResult } from "movie";
 import PlayBtn from "../PlayBtn/PlayBtn";
 import StartRatingContainer from "../StarRating/container/StartRatingContainer";
+import type { IContentResult } from "content";
 
 interface Props {
   layoutId: string | undefined;
-  data: IMovieResult;
+  data: IContentResult;
   onCloseModal: () => void;
 }
 

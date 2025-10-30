@@ -1,19 +1,19 @@
 import { useNavigate } from 'react-router-dom';
-import { useMovieQuery } from '../../../hooks/queries/useMovieQuery'
+import { useContentQuery } from '../../../hooks/queries/useContentQuery'
 import MovieSlider from '../MovieSlider'
 import { useCallback, useState } from 'react';
-import { useMovieStore } from '../../../store/useMovieStore';
+import { useContentStore } from '../../../store/useContentStore';
 
 interface Props{
     title:string;
+    category:"movie" | "tv";
     type:string;
-    url:string;
 }
 
-const MovieSliderContainer = ({title,type,url}:Props) => {
+const MovieSliderContainer = ({title,category,type}:Props) => {
     const router = useNavigate();
-    const { data } = useMovieQuery(type, url);
-    const {setMovieKey} = useMovieStore();
+    const { data } = useContentQuery(category, type);
+    const {setContentKey} = useContentStore();
     const [index, setIndex] = useState<number>(0)
     const [sliderType, setSliderType] = useState<string>("next");
     const handleSlider = useCallback(
@@ -35,10 +35,10 @@ const MovieSliderContainer = ({title,type,url}:Props) => {
     
     const handleMovieModalOpen = useCallback(
       (id: string) => {
-        setMovieKey(type)
-        return router(`/movies/${id}`);
+        setContentKey(category,type)
+        return router(`movies/${id}`);
       },
-      [router,setMovieKey]
+      [router,setContentKey,category,type]
     );
   return (
     <MovieSlider
