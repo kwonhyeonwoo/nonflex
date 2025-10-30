@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
-import {styled} from "styled-components";
+import { styled } from "styled-components";
 
 export const Wrapper = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    row-gap: 20px;;
-    position:relative;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  row-gap: 20px;
+  position: relative;
+`;
 
 export const MovieTitle = styled.h2`
   font-size: 25px;
@@ -22,22 +22,20 @@ export const SliderBox = styled(motion.div)`
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 10px;
-  position:absolute;
-  top:45px;
+  position: absolute;
+  top: 45px;
   box-sizing: border-box;
 `;
 
-export const MovieCard = styled(motion.div)<{ bgImg: string }>`
+export const MovieCard = styled(motion.div)`
+  width: 269px;
   height: 200px;
-  background-color: white;
   color: black;
   display: flex;
-
   justify-content: center;
   align-items: center;
   font-weight: 700;
   font-size: 40px;
-  background-image: url(${(props) => props.bgImg});
   background-size: cover;
   background-position: center center;
   cursor: pointer;
@@ -50,16 +48,17 @@ export const MovieCard = styled(motion.div)<{ bgImg: string }>`
   }
 `;
 
+export const LankImg = styled(motion.img)`
+    width: 200px;
+    height:200px;
+`
 
 export const PaginationBtnWrapper = styled.div`
   width: 100%;
   top: 100px;
   height: 80px;
   position: absolute;
-  
 `;
-
-
 
 export const PaginationBtn = styled.button`
   border-radius: 50%;
@@ -69,13 +68,12 @@ export const PaginationBtn = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 999;
-  position:absolute;
+  position: absolute;
   cursor: pointer;
   border: none;
   background-color: rgba(0, 0, 0, 0.5);
 
-  &:last-child{
-    right:20px;
-
+  &:last-child {
+    right: 20px;
   }
 `;

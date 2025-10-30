@@ -7,6 +7,7 @@ import { formatImgUrl } from '../../utils/utils';
 import MovieSliderContainer from '../../components/MovieSlider/container/MovieSliderContainer';
 import BannerContainer from '../../components/Banner/container/BannerContainer';
 import ModalContainer from '../../components/Modal/container/ModalContainer';
+import TopContentContainer from '../../components/TopContent/container/TopContentContainer';
 
 interface Props {
   data: IContentBase | undefined;
@@ -36,20 +37,31 @@ const Home = ({
           type="now_playing"
           title="지금 상영중인 영화"
         />
-        <MovieSliderContainer
+        <TopContentContainer
           category="movie"
           type="popular"
-          title="가장 인기있는 영화"
+          title="오늘 전세계의 Top10 영화"
         />
-        <MovieSliderContainer
-          category="movie"
-          type="top_rated"
-          title="최고 평점을 받은 영화"
-        />
+
         <MovieSliderContainer
           category="movie"
           type="upcoming"
           title="상영 예정인 영화"
+        />
+        <MovieSliderContainer
+          category="tv"
+          type="airing_today"
+          title="지금 상영중인 시리즈"
+        />
+        <TopContentContainer
+          category="tv"
+          type="top_rated"
+          title="오늘 대한민국의 Top10 시리즈"
+        />
+        <MovieSliderContainer
+          category="tv"
+          type="popular"
+          title="가장 인기있는 시리지"
         />
       </SliderWrapper>
 
