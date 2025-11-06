@@ -36,7 +36,7 @@ const MovieSliderContainer = ({title,category,type}:Props) => {
     const handleMovieModalOpen = useCallback(
       (id: string) => {
         setContentKey(category,type)
-        return router(`movies/${id}`);
+        return router(`/movies/${id}`);
       },
       [router,setContentKey,category,type]
     );

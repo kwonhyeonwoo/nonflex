@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
-import HomeContainer from '../pages/Home/container/HomeContainer'
 import TvContainer from '../pages/Tv/container/TvContainer'
 import MovieContainer from '../pages/Movie/container/MovieContainer'
-import ModalContainer from '../components/Modal/container/ModalContainer'
+import HomeContainer from '../pages/Home/container/HomeContainer.tsx'
+import ModalContainer from '../components/Modal/container/ModalContainer.tsx'
 
 const routes=[
   {

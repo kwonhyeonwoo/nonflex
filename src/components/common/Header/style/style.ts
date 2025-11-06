@@ -19,12 +19,17 @@ export const LeftBox = styled.div`
     align-items: center;
     column-gap: 24px;
 `
+
 export const RightBox = styled.div`
     display: flex;
     align-items: center;
     position:relative;
     justify-content: flex-end;
 `
+export const Email = styled(motion.p)`
+    color:white;
+`
+
 export const Logo = styled.svg`
   width: 95px;
   height: 25px;
@@ -39,6 +44,7 @@ export const Nav = styled.nav`
     column-gap: 20px;
     
 `;
+
 
 export const List = styled(motion.li)`
     font-size: 14px;
@@ -62,6 +68,7 @@ export const Circle = styled(motion.div)`
 
 export const Input = styled(motion.input)`
   transform-origin: right center;
+  position:absolute;
   border:1px solid white;
   background-color:transparent;
   padding:8px 0px;
@@ -72,4 +79,6 @@ export const Input = styled(motion.input)`
 export const SearchSvg = styled(motion.svg)`
     position:absolute;
     right:-5px;
+    z-index:999 ;
+    cursor: pointer;
 `;

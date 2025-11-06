@@ -25,14 +25,7 @@ const Account = ({
             label:"이메일",
             value:data.email
         },
-        {
-            name:"nickName",
-            type:"text",
-            placeholder:"닉네임을 입력해주세요",
-            required:true,
-            label:"닉네임",
-            value:data.nickName
-        },
+        
         {
             name:"password",
             type:"password",
@@ -66,7 +59,7 @@ const Account = ({
                     <CustomInputContainer
                         name={name}
                         type={type}
-                        setState={setState}
+                        setState={setState }
                         placeholder={placeholder}
                         required={required}
                         value={value}

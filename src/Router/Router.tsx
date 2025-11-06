@@ -11,7 +11,7 @@ const Router = ()=>{
       <BrowserRouter>
         <HeaderContainer />
          <Routes>
-          <Route path="/" element={<RootRouter/>}/>
+          <Route path="/*" element={<RootRouter/>}/>
           <Route path="/auth/*" element={<AuthRouter/>}/>
          </Routes>
         <FooterContainer/>

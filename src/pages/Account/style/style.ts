@@ -8,7 +8,6 @@ export const AccountPage = styled.main`
     display:flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: blue; */
 `
 
 export const Title = styled.h2`

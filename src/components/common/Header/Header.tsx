@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 import { motion, animationControls } from "framer-motion";
-import { Circle, HeaderWrapper, Input, LeftBox, List, Logo, Nav, RightBox, SearchSvg } from "./style/style"
+import { Circle, Email, HeaderWrapper, Input, LeftBox, List, Logo, Nav, RightBox, SearchSvg } from "./style/style"
 
 interface Props {
   pathName?: string;
+  email:string | null;
   isSearchOpen: boolean;
   headerAnimation: ReturnType<typeof animationControls>;
   onSearchOpen: () => void;
@@ -32,6 +33,7 @@ const Header = ({
   pathName,
   isSearchOpen,
   headerAnimation,
+  email,
   onSearchOpen,
 }: Props) => {
   return (
@@ -55,6 +57,12 @@ const Header = ({
         </Nav>
       </LeftBox>
       <RightBox>
+        {email && (
+          <Email
+            animate={{x:isSearchOpen ? -185 : -30}}
+            transition={{ ease: "linear" }}
+          >{email}</Email>
+        )}
         <SearchSvg
           onClick={onSearchOpen}
           transition={{ ease: "linear" }}

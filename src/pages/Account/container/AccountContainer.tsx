@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import  { useCallback, useState } from 'react'
 import Account from '../Account'
 import type { IAccount } from 'auth';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
@@ -6,7 +6,6 @@ import { authServie } from '../../../firebase';
 
 const AccountContainer = () => {
     const [account, setAccount] = useState<IAccount>({
-        nickName:"",
         email:"",
         password:"",
         passwordCheck:""
@@ -15,7 +14,6 @@ const AccountContainer = () => {
     const handleSubmit = useCallback(
       async() => {
         const {
-            nickName,
             email,
             password,
             passwordCheck
@@ -29,7 +27,6 @@ const AccountContainer = () => {
     },
       [account],
     );
-    console.log('data',account)
   return (
     <Account
         data={account}

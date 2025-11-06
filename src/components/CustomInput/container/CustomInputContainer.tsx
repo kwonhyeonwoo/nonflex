@@ -1,24 +1,24 @@
 import { useCallback, type SetStateAction } from 'react'
 import CustomInput from '../CustomInput'
-import type { IAccount } from 'auth';
-interface Props{
+import type { IAccount, ILogin } from 'auth';
+interface  Props<T>{
     name:string;
     type:string;
     placeholder:string;
     required:boolean;
     label:string;
     value:string;
-    setState:React.Dispatch<SetStateAction<IAccount>>;
+    setState: React.Dispatch<SetStateAction<T>>;
 }
-const CustomInputContainer = ({
-    name,
-    type,
-    placeholder,
-    required,
-    value,
-    label,
-    setState,
-}:Props) => {
+const CustomInputContainer =<T extends IAccount | ILogin>({
+  name,
+  type,
+  placeholder,
+  required,
+  value,
+  label,
+  setState,
+}: Props<T>) => {
     const handleUpdateChange = useCallback(
       (e:React.ChangeEvent<HTMLInputElement>) => {
         const {name,value} = e.target;
