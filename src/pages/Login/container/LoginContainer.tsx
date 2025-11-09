@@ -16,8 +16,7 @@ const LoginContainer = () => {
     async()=>{
       try{
         const {email,password} = login;
-        const data = await signInWithEmailAndPassword(authServie,email,password)
-        console.log('로그인이 완료되었습니다,',data);
+        await signInWithEmailAndPassword(authServie,email,password)
         return navigate('/')
 
       }catch(err){

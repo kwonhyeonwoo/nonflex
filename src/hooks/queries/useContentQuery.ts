@@ -5,7 +5,7 @@ import type { IContentBase } from "content";
 
 export const useContentQuery = (category: "movie" | "tv", type: string) => {
   return useQuery<IContentBase>({
-    queryKey: movieKeys.contents(category,type),
-    queryFn: () => movieServie.getContents(category,type),
+    queryKey: movieKeys.contents(category, type),
+    queryFn: () => movieServie.getContents(category, type),
   });
 };

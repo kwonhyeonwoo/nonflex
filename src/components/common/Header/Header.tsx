@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom"
 import { motion, animationControls } from "framer-motion";
-import { Circle, Email, HeaderWrapper, Input, LeftBox, List, Logo, Nav, RightBox, SearchSvg } from "./style/style"
+import { AuthWrapper, Circle, Email, HeaderWrapper, Input, LeftBox, List, LoginBtnBox, Logo, Nav, NonProfile, RightBox, SearchSvg } from "./style/style"
 
 interface Props {
   pathName?: string;
   email:string | null;
   isSearchOpen: boolean;
   headerAnimation: ReturnType<typeof animationControls>;
+  handleKeywordChange:(e:React.ChangeEvent<HTMLInputElement>)=>void;
   onSearchOpen: () => void;
 }
 
@@ -23,10 +24,17 @@ const lists  = [
       list:"영화",
       link:"/movie"
     },
-    {
-      list:"내가 찜한 리스트",
-      link:"/my-lists"
-    }
+];
+
+const loginBtn =[
+  {
+    text:"로그인",
+    link:"/auth/login"
+  },
+  {
+    text:"회원가입",
+    link:"/auth/account"
+  }
 ]
 
 const Header = ({
@@ -35,6 +43,7 @@ const Header = ({
   headerAnimation,
   email,
   onSearchOpen,
+  handleKeywordChange,
 }: Props) => {
   return (
     <HeaderWrapper animate={headerAnimation}>
@@ -57,11 +66,23 @@ const Header = ({
         </Nav>
       </LeftBox>
       <RightBox>
-        {email && (
-          <Email
-            animate={{x:isSearchOpen ? -185 : -30}}
-            transition={{ ease: "linear" }}
-          >{email}</Email>
+        {email  ? (
+         <AuthWrapper animate={{x:isSearchOpen ? -185 : -30}}
+         transition={{ ease: "linear" }}>
+            <NonProfile>
+              👼
+            </NonProfile>
+            <Email>
+              {email}
+            </Email>
+         </AuthWrapper>
+        ):(
+          <LoginBtnBox  animate={{x:isSearchOpen ? -185 : -30}}
+          transition={{ ease: "linear" }}>
+            {loginBtn.map((item,idx)=>(
+              <Link to={item.link} key={idx}>{item.text}</Link>
+            ))}
+          </LoginBtnBox>
         )}
         <SearchSvg
           onClick={onSearchOpen}
@@ -83,6 +104,7 @@ const Header = ({
         <Input
           transition={{ ease: "linear" }}
           placeholder="Movie Search.."
+          onChange={handleKeywordChange}
           animate={{
             scaleX: isSearchOpen ? 1 : 0,
           }}

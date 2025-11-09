@@ -3,6 +3,7 @@ import HeaderContainer from "../components/common/Header/container/HeaderContain
 import FooterContainer from "../components/common/Footer/container/FooterContainer";
 import RootRouter from "./RootRouter";
 import AuthRouter from "./AuthRouter";
+import Layout from "../components/common/Layout/Layout";
 
 
 
@@ -11,8 +12,10 @@ const Router = ()=>{
       <BrowserRouter>
         <HeaderContainer />
          <Routes>
-          <Route path="/*" element={<RootRouter/>}/>
-          <Route path="/auth/*" element={<AuthRouter/>}/>
+          <Route element={<Layout/>}>
+            <Route path="/*" element={<RootRouter/>}/>
+            <Route path="/auth/*" element={<AuthRouter/>}/>
+          </Route>
          </Routes>
         <FooterContainer/>
       </BrowserRouter>

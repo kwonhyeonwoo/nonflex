@@ -26,7 +26,28 @@ export const RightBox = styled.div`
     position:relative;
     justify-content: flex-end;
 `
-export const Email = styled(motion.p)`
+export const AuthWrapper = styled(motion.div)`
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+`
+
+export const LoginBtnBox = styled(motion.div)`
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+`
+export const NonProfile = styled.div`
+    width: 20px;
+    height:20px;
+    font-size: 12px;
+    border-radius: 50%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`
+export const Email = styled.p`
     color:white;
 `
 
@@ -63,7 +84,7 @@ export const Circle = styled(motion.div)`
     left:0;
     right:0;
     margin:0 auto;
-    background-color: ${(props)=>props.theme.red};
+    background-color: ${(props) => props.theme.red};
 `
 
 export const Input = styled(motion.input)`
@@ -71,14 +92,14 @@ export const Input = styled(motion.input)`
   position:absolute;
   border:1px solid white;
   background-color:transparent;
-  padding:8px 0px;
+  padding:10px 0px;
   padding-left:30px;
   box-sizing: border-box;
   color:white;
 `;
 export const SearchSvg = styled(motion.svg)`
     position:absolute;
-    right:-5px;
+    right:-11px;
     z-index:999 ;
     cursor: pointer;
 `;

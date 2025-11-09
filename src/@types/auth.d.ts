@@ -5,8 +5,14 @@ declare module "auth" {
         passwordCheck: string;
     }
 
-    interface ILogin{
-        email:string;
-        password:string;
+    interface ILogin {
+        email: string;
+        password: string;
+    }
+
+    interface IUser {
+        email: string | null;
+        displayName: string | null;
+        profile: string | null
     }
 }

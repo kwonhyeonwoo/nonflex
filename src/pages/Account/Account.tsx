@@ -1,8 +1,9 @@
 import type { IAccount } from 'auth'
 import CustomInputContainer from '../../components/CustomInput/container/CustomInputContainer'
-import { AccountPage,   FormWrapper, Title } from './style/style'
+import { AccountPage,   FormWrapper,  Title } from './style/style'
 import type { SetStateAction } from 'react';
 import CustomButtonContainer from '../../components/common/CustomButton/container/CustomButtonContainer';
+import ExistAuth from '../../components/common/ExistAuth/ExistAuth';
 
 interface Props{
     data:IAccount;
@@ -73,6 +74,8 @@ const Account = ({
                 handleSubmit={handleSubmit}
             />
         </FormWrapper>
+        <ExistAuth text='이미 계정이 있으신가요?' link='/auth/login'/>
+
     </AccountPage>
   )
 }

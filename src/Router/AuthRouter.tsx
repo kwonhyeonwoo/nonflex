@@ -11,7 +11,7 @@ const routes = [
     {
         path:"/account",
         element:<AccountContainer/>
-    }
+    },
 ];
 
 const AuthRouter = () => {

@@ -24,5 +24,3 @@ export const FormWrapper = styled.div`
     align-items: center;
     row-gap: 20px;
 `
-
-

@@ -1,50 +1,33 @@
-import { useCallback,   useEffect,   useState } from 'react';
 import Header from '../Header'
 import { useLocation,  } from 'react-router-dom'
 import { useAnimation, useMotionValueEvent, useScroll } from 'framer-motion';
-import { authServie } from '../../../../firebase';
+import { useAuthStore } from '../../../../store/useAuthStore';
+import { useSearchStore } from '../../../../store/useSearchStore';
 
 const HeaderContainer = () => {
-  const {pathname} = useLocation();
-  const [email,setEmail] = useState<string | null>(null)
-  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const { pathname } = useLocation();
+  const { user } = useAuthStore();
+  const { isSearchOpen, keyword, setKeyword, toggleSearch } = useSearchStore();
   const { scrollY } = useScroll();
   const headerAnimation = useAnimation();
-  const inputAnimation = useAnimation();
-  const handleSearchOpen =useCallback(
-    () => {
-      setIsSearchOpen((prev)=>!prev) 
-    },
-    [isSearchOpen,inputAnimation],
-  )
-  
-  
-  useMotionValueEvent(scrollY,"change",(y)=>{
-    if(y > 80){
-      headerAnimation.start({backgroundColor:"black"})
-    }else{
-      headerAnimation.start({ backgroundColor: "transparent" });
-    }
-  })
-  useEffect(()=>{
-    const data =  ()=>{
-      const user = authServie.onAuthStateChanged((user)=>{
-        if(user){
-          setEmail(user.email)
-        }
-      });
-      return user;
-    }
-    data();
-  },[email]);
+
+  useMotionValueEvent(scrollY, "change", (y) => {
+    headerAnimation.start({
+      backgroundColor: y > 80 ? "black" : "transparent",
+    });
+  });
+  console.log(keyword)
     return (
+      <>
       <Header
-        email={email}
-        pathName={pathname}
-        isSearchOpen={isSearchOpen}
-        headerAnimation={headerAnimation}
-        onSearchOpen={handleSearchOpen}
-      />
+      email={user?.email ?? null}
+      pathName={pathname}
+      isSearchOpen={isSearchOpen}
+      headerAnimation={headerAnimation}
+      handleKeywordChange={(e) => setKeyword(e.target.value)}
+      onSearchOpen={toggleSearch}
+    />
+    </>
     );
 }
 

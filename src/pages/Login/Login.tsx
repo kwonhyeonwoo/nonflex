@@ -3,6 +3,7 @@ import { FormWrapper, LoginPage, Title } from './css/style'
 import type { ILogin } from 'auth'
 import CustomInputContainer from '../../components/CustomInput/container/CustomInputContainer';
 import CustomButtonContainer from '../../components/common/CustomButton/container/CustomButtonContainer';
+import ExistAuth from '../../components/common/ExistAuth/ExistAuth';
 
 interface Props{
   login:ILogin;
@@ -59,6 +60,7 @@ const Login = ({login,setState,handleLoginSubmit}:Props) => {
                 handleSubmit={handleLoginSubmit}
             />
         </FormWrapper>
+        <ExistAuth text='계정이 없으신가요?' link='/auth/account'/>
     </LoginPage>
   )
 }

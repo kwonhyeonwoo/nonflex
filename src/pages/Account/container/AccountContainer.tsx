@@ -22,8 +22,7 @@ const AccountContainer = () => {
         if(password !== passwordCheck){
             console.log('비밀번호가 올바르지 않습니다.')
         }
-        const data = await createUserWithEmailAndPassword(authServie,email,password);
-        console.log('submit',data)
+        return await createUserWithEmailAndPassword(authServie,email,password);
     },
       [account],
     );
