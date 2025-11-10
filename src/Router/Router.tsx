@@ -12,10 +12,10 @@ const Router = ()=>{
       <BrowserRouter>
         <HeaderContainer />
          <Routes>
-          <Route element={<Layout/>}>
-            <Route path="/*" element={<RootRouter/>}/>
-            <Route path="/auth/*" element={<AuthRouter/>}/>
-          </Route>
+            <Route element={<Layout/>}>
+              <Route path="/*" element={<RootRouter/>}/>
+              <Route path="/auth/*" element={<AuthRouter/>}/>
+            </Route>
          </Routes>
         <FooterContainer/>
       </BrowserRouter>

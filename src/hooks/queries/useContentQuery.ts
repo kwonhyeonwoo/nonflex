@@ -3,9 +3,9 @@ import { movieKeys } from "../../api/queryKeys"
 import { movieServie } from "../../api/servies/movieService"
 import type { IContentBase } from "content";
 
-export const useContentQuery = (category: "movie" | "tv", type: string) => {
+export const useContentQuery = (type: "movie" | "tv" | "search", id: string) => {
   return useQuery<IContentBase>({
-    queryKey: movieKeys.contents(category, type),
-    queryFn: () => movieServie.getContents(category, type),
+    queryKey: movieKeys.contents(type, id),
+    queryFn: () => movieServie.getContents(type, id),
   });
 };

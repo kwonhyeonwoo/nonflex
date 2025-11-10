@@ -7,10 +7,11 @@ import type { IContentBase } from 'content';
 
 const ModalContainer = () => {
     const { contentKey ,category} =  useContentStore();
-    console.log('movieKEy',contentKey)
-    const data = useQueryClient().getQueryData<IContentBase>([category, contentKey]);
+    console.log("contentKey", contentKey, "cate", category);
+    const data = useQueryClient().getQueryData<IContentBase>
+    (["contents",category, contentKey]);
     const navigate = useNavigate();
-    const movieMatch = useMatch('/movies/:id');
+    const movieMatch = useMatch('movies/:id');
     const movieResult = data?.results.find(
       (find) => String(find.id) === movieMatch?.params.id
     );

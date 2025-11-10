@@ -1,7 +1,7 @@
 import client from "../client";
 
 export const movieServie = {
-  getContents: (category: "movie" | "tv", type: string) =>
+  getContents: (category: "movie" | "tv" | "search", type: string) =>
     client
       .get(`/${category}/${type}?api_key=${import.meta.env.VITE_API_KEY}`)
       .then((res) => res.data),

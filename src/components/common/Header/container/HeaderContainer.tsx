@@ -7,7 +7,7 @@ import { useSearchStore } from '../../../../store/useSearchStore';
 const HeaderContainer = () => {
   const { pathname } = useLocation();
   const { user } = useAuthStore();
-  const { isSearchOpen, keyword, setKeyword, toggleSearch } = useSearchStore();
+  const { isSearchOpen,setKeyword, toggleSearch } = useSearchStore();
   const { scrollY } = useScroll();
   const headerAnimation = useAnimation();
 
@@ -16,9 +16,7 @@ const HeaderContainer = () => {
       backgroundColor: y > 80 ? "black" : "transparent",
     });
   });
-  console.log(keyword)
     return (
-      <>
       <Header
       email={user?.email ?? null}
       pathName={pathname}
@@ -27,7 +25,6 @@ const HeaderContainer = () => {
       handleKeywordChange={(e) => setKeyword(e.target.value)}
       onSearchOpen={toggleSearch}
     />
-    </>
     );
 }
 
