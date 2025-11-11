@@ -25,7 +25,7 @@ const RootRouter = () => {
     <Routes>
         {routes.map(({path,element},idx)=>(
             <Route path={path} element={element} key={idx}>
-              <Route path={`movies/:id`} element={<ModalContainer/>}/>
+              <Route path={`${path}/movies/:id`} element={<ModalContainer/>}/>
             </Route>
           ))}
     </Routes>

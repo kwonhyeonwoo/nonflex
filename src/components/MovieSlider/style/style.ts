@@ -17,6 +17,7 @@ export const MovieTitle = styled.h2`
   box-sizing: border-box;
 `;
 
+
 export const SliderBox = styled(motion.div)`
   width: 100%;
   display: grid;
@@ -27,29 +28,6 @@ export const SliderBox = styled(motion.div)`
   box-sizing: border-box;
 `;
 
-export const MovieCard = styled(motion.div)<{ bgImg: string }>`
-  height: 200px;
-  background-color: white;
-  color: black;
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
-  font-weight: 700;
-  font-size: 40px;
-  background-image: url(${(props) => props.bgImg});
-  background-size: cover;
-  background-position: center center;
-  cursor: pointer;
-  &:first-child {
-    transform-origin: left center; /* ⬅️ 축을 좌측으로 */
-  }
-
-  &:last-child {
-    transform-origin: right center; /* ⬅️ 축을 우측으로 */
-  }
-`;
-
 
 export const PaginationBtnWrapper = styled.div`
   width: 100%;
@@ -58,8 +36,6 @@ export const PaginationBtnWrapper = styled.div`
   position: absolute;
   
 `;
-
-
 
 export const PaginationBtn = styled.button`
   border-radius: 50%;

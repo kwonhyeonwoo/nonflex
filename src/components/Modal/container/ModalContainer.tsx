@@ -5,19 +5,23 @@ import { useQueryClient } from '@tanstack/react-query';
 import {  useContentStore } from '../../../store/useContentStore';
 import type { IContentBase } from 'content';
 
-const ModalContainer = () => {
+interface Props{
+  link?:string;
+}
+
+const ModalContainer = ({link}:Props) => {
     const { contentKey ,category} =  useContentStore();
     console.log("contentKey", contentKey, "cate", category);
     const data = useQueryClient().getQueryData<IContentBase>
     (["contents",category, contentKey]);
     const navigate = useNavigate();
-    const movieMatch = useMatch('movies/:id');
+    const movieMatch = useMatch(link ? `${link}/movies/:id` : `movies/:id`)
     const movieResult = data?.results.find(
       (find) => String(find.id) === movieMatch?.params.id
     );
     const handleCloseModal = useCallback(
       () => {
-        return navigate('/')
+        return navigate(link ? `/${link}` : "/")
       },
       [navigate],
     )

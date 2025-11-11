@@ -4,15 +4,13 @@ import { useSearchStore } from "../../../store/useSearchStore";
 import { useSearchQuery } from "../../../hooks/queries/useSearchQuery";
 import SearchOverlay from "../../SearchOverlay/SearchOverlay";
 import { useState } from "react";
-import { useContentQuery } from "../../../hooks/queries/useContentQuery";
-
 const Layout = () => {
   const { keyword, isSearchOpen } = useSearchStore();
   const [id, setId] = useState("");
   const { data } = useSearchQuery(id,keyword);
   console.log('data',data?.results)
   return (
-    <div style={{ width: "100%", border: "1px solid blue" }}>
+    <div style={{ width: "100%", }}>
       {isSearchOpen && keyword.length > 0 ? (
         <SearchOverlay results={(data?.results ?? [])} setId={setId} />
       ) : (

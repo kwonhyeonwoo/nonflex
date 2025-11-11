@@ -8,12 +8,13 @@ interface Props{
     title:string;
     category:"movie" | "tv";
     type:string;
+    link?:string;
 }
 
-const MovieSliderContainer = ({title,category,type}:Props) => {
+const MovieSliderContainer = ({title,category,type,link}:Props) => {
     const router = useNavigate();
     const { data } = useContentQuery(category, type);
-    const {setContentKey} = useContentStore();
+    const {setContentKey,setMovieId} = useContentStore();
     const [index, setIndex] = useState<number>(0)
     const [sliderType, setSliderType] = useState<string>("next");
     const handleSlider = useCallback(
@@ -35,9 +36,9 @@ const MovieSliderContainer = ({title,category,type}:Props) => {
     
     const handleMovieModalOpen = useCallback(
       (id: string) => {
-        console.log('tq',type)
+        setMovieId(id);
         setContentKey(category,type)
-        return router(`/movies/${id}`);
+        return router(link ? `/${link}/movies/${id}` : `/movies/${id}`);
       },
       [router,setContentKey,category,type]
     );
@@ -47,7 +48,6 @@ const MovieSliderContainer = ({title,category,type}:Props) => {
       title={title}
       index={index}
       sliderType={sliderType}
-      type={type}
       handleSlider={handleSlider}
       onMovieModalOpen={handleMovieModalOpen}
     />

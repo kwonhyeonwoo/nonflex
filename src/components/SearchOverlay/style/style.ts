@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -32,4 +33,25 @@ export const NoResult = styled.p`
   color: #aaa;
   text-align: center;
   margin-top: 50px;
+`;
+export const MovieCard = styled(motion.div)<{ bgImg: string }>`
+  height: 200px;
+  background-color: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 700;
+  font-size: 40px;
+  background-image: url(${(props) => props.bgImg});
+  background-size: cover;
+  background-position: center center;
+  cursor: pointer;
+  &:first-child {
+    transform-origin: left center;
+  }
+
+  &:last-child {
+    transform-origin: right center;
+  }
 `;

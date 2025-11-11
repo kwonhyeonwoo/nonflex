@@ -65,7 +65,7 @@ const Home = ({
         />
       </SliderWrapper>
 
-      {movieMatch && <ModalContainer />}
+      {movieMatch && <ModalContainer/>}
     </Page>
   );
 };

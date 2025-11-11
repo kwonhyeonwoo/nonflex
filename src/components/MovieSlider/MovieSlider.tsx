@@ -1,29 +1,22 @@
 import { AnimatePresence } from 'framer-motion';
-import {MovieCard,MovieTitle, PaginationBtn, PaginationBtnWrapper, SliderBox, Wrapper } from './style/style';
+import {MovieTitle, PaginationBtn, PaginationBtnWrapper, SliderBox, Wrapper } from './style/style';
 import { formatImgUrl } from '../../utils/utils';
 import MovieHover from '../MovieHover/MovieHover';
 import type { IContentBase } from 'content';
+import MovieCard from '../MovieCard/MovieCard';
 
 interface Props {
   data: IContentBase |  undefined;
   index: number;
   title: string;
   sliderType:string;
-  type:string;
   handleSlider:(type:"next"|"prev")=>void;
   onMovieModalOpen: (id: string) => void;
 }
 
-const parentVariants = {
-  rest: { scale: 1, y: 0, zIndex: 1 },
-  hover: { scale: 1.5, y: -32, zIndex: 99, transition: { duration: 0.2 } },
-};
-
-
 const MovieSlider = ({
   data,
   index,
-  type,
   sliderType,
   title,
   handleSlider,
@@ -49,13 +42,8 @@ const MovieSlider = ({
             .slice(6 * index, 6 * index + 6)
             .map((movie) => (
               <MovieCard
-                key={movie.id}
-                bgImg={formatImgUrl(movie?.poster_path, "w500")}
-                layoutId={String(type + movie.id)}
-                variants={parentVariants}
-                initial="rest"
-                animate="rest"
-                whileHover="hover"
+                id={movie.id}
+                poster_path={formatImgUrl(movie?.poster_path, "w500")}
               >
                 <MovieHover
                   release_date={

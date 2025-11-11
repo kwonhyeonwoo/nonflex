@@ -1,11 +1,14 @@
+import { useMatch } from "react-router-dom";
 import { useContentQuery } from "../../../hooks/queries/useContentQuery";
 import Tv from "../Tv"
+import { useContentStore } from "../../../store/useContentStore";
 
 const TvContainer = () => {
   const { data } = useContentQuery("tv", "airing_today");
-  console.log('data',data)
+  const {id} = useContentStore();
+  const tvMatch = useMatch(`/tv/movies/${id}`);
   return (
-    <Tv data={data}/>
+    <Tv data={data} tvMatch={tvMatch?.pathname}/>
   )
 }
 
